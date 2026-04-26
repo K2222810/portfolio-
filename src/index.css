@@ -1,0 +1,70 @@
+:root {
+  --deep-tide: #1a1959;
+  --steady-blue: #2a83b5;
+  --open-sky: #6ddaf1;
+  --mist: #bbfaff;
+  --ice: #eafcff;
+  --text: #12123a;
+
+  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 16% 8%, rgba(42, 131, 181, 0.48), transparent 38%),
+    radial-gradient(circle at 78% 10%, rgba(109, 218, 241, 0.34), transparent 36%),
+    linear-gradient(180deg, #d8f6ff 0%, #dffbff 36%, #f0fdff 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text);
+  padding-left: 0;
+  transition: padding-left 220ms ease;
+}
+
+body.nav-open {
+  padding-left: 220px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(42, 131, 181, 0.24);
+}
+
+@media (max-width: 700px) {
+  body,
+  body.nav-open {
+    padding-left: 0;
+  }
+}
