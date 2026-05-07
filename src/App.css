@@ -322,11 +322,35 @@
 
 .projects-panel {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
   margin-top: 18px;
   padding: 24px;
+}
+
+.project-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 14px 0 18px;
+}
+
+.project-card {
+  border: 1px solid rgba(42, 131, 181, 0.14);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(238, 251, 255, 0.86);
+}
+
+.project-card h3 {
+  margin: 0 0 8px;
+  color: var(--deep-tide);
+}
+
+.project-card p {
+  margin: 0 0 12px;
 }
 
 .skill-tags {
@@ -363,6 +387,10 @@
   margin-top: 14px;
 }
 
+.outside-work-card {
+  margin-top: 18px;
+}
+
 .contact-panel > div {
   max-width: 60ch;
 }
@@ -386,6 +414,10 @@
     grid-template-columns: 1fr;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .project-cards {
+    grid-template-columns: 1fr;
   }
 
   .highlights,

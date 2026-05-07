@@ -1,43 +1,45 @@
-import { ArrowUpRight, Layers3, Palette, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 import NavBar from './components/NavBar/NavBar.jsx';
 import Grainient from './components/Grainient/Grainient';
 import './App.css';
 
-const highlights = [
+const educationCertificates = [
   {
-    icon: Sparkles,
-    title: 'Summary',
-    text: 'I am a game programmer third-year student in London. I am developing my programming and game development skills, and I keep improving through additional programming courses while seeking real-world experience.'
+    name: 'Education & Certificates',
+    summary: 'Kingston University - Computer Games Programming BSc (Hons), focused on game systems, gameplay programming, and technical development foundations. Plus General Assembly Certificate of Completion - Software Engineering Bootcamp Online (420 hours, completed on 06/03/2026).',
+    link: '/Certificate-of-Completion-alexbaynespineda12@gmail.com-1773866221.pdf'
   },
   {
-    icon: Layers3,
-    title: 'Apart from Games',
-    text: 'Outside creating games, I am an avid gamer and I explore many genres for ideas and inspiration. I also stay active through the gym and enjoy social activities like board games and team sports.'
-  },
-  {
-    icon: Palette,
-    title: 'Key Strengths',
-    text: 'Experience working with groups and management, map building and level design practice, problem solving and adaptation, page translation, and work experience from simple jobs each year.'
+    name: 'Career Growth',
+    summary: 'I started in game development and expanded into software engineering to create more opportunities. I enjoy both paths and continue building skills across games and software projects.'
   }
 ];
 
-const projects = [
+const portfolioProjects = [
   {
-    name: 'Education',
-    summary: 'Kingston University - Computer Games Programming BSc (Hons), plus the General Assembly Software Engineering Bootcamp Online.'
+    name: 'Trace Job App',
+    summary: 'Full-stack job tracking application with modern front-end and deployment workflow.',
+    readme: 'https://github.com/K2222810/trace-front-end',
+    live: 'https://trace-job-app.netlify.app/'
   },
   {
-    name: 'Experience',
-    summary: 'I have built experience across C++ (3 years), C# (2 years), JavaScript (1 year), Python (1 year), and SQL (1 year). My work includes extensive C++ coursework, Unity C# development, JavaScript web foundations, React Expo projects, Python fundamentals, and SQL database coursework, all written as a short paragraph rather than bullet points.'
+    name: 'Tracking Game App (Django)',
+    summary: 'Django-based tracking project focused on CRUD features and practical deployment.',
+    readme: 'https://github.com/K2222810/Tracking-Games-Django',
+    live: 'https://tracking-game-app-56704e1f5fc3.herokuapp.com/'
   },
   {
-    name: 'Software and Tools',
-    summary: 'Unity, Unreal Engine, Visual Studio 2022/2023, Oracle Apex, Excel, Cisco Packet Tracer, React Native Expo, Android Studio, PS5 Dev Kit, and Windows software environments.'
+    name: 'General Assembly App',
+    summary: 'GA project app showcasing full-stack fundamentals and deployment pipeline.',
+    readme: 'https://github.com/K2222810/MEN-Stack-CRUD-App',
+    live: 'https://general-assembly-app-5d60d220519e.herokuapp.com/'
   },
   {
-    name: 'Bilingual and Certificate',
-    summary: 'English (9-10 years living in the UK), Spanish (native language). General Assembly Certificate of Completion - Software Engineering Bootcamp Online (420 hours, completion date: 06/03/2026).'
+    name: 'Portfolio Videos',
+    summary: 'Project video showcase with gameplay and build examples across multiple projects.',
+    readme: 'https://github.com/K2222810/portfolio-',
+    live: 'https://mygameportfolio.tilda.ws/'
   }
 ];
 
@@ -82,9 +84,9 @@ function App() {
         <header className="hero card-surface" id="about">
           <div className="hero-copy">
             <p className="eyebrow">Alejandro Bayne</p>
-            <h1>London game developer</h1>
+            <h1>Software & Games Programmer</h1>
             <p className="lead">
-              Game programmer third-year student. I am focused on developing stronger game programming and software engineering skills through university projects, coursework, and practical development work.
+              London-based programmer with a focus on game development and software engineering. I build practical projects, work well in teams, and continuously improve through real-world development and structured learning.
             </p>
 
             <div className="hero-actions">
@@ -98,10 +100,10 @@ function App() {
 
             <div className="hero-meta">
               <span>Unity</span>
-              <span>React</span>
-              <span>C++</span>
-              <span>C#</span>
-              <span>JavaScript</span>
+              <span>Unreal Engine</span>
+              <span>React Native</span>
+              <span>Mobile & Web Apps</span>
+              <span>Gameplay Systems</span>
             </div>
           </div>
 
@@ -136,22 +138,16 @@ function App() {
           </div>
         </header>
 
-        <section className="highlights" id="services">
-          {highlights.map(({ icon: Icon, title, text }) => (
-            <article key={title} className="card-surface info-card">
-              <Icon size={22} />
-              <h2>{title}</h2>
-              <p>{text}</p>
-            </article>
-          ))}
-        </section>
-
-        <section className="sections-grid" id="resume">
-          {projects.map(({ name, summary }) => (
+        <section className="sections-grid" id="education">
+          {educationCertificates.map(({ name, summary, link }) => (
             <article key={name} className="card-surface section-card">
-              <p className="section-label">Resume</p>
               <h2>{name}</h2>
               <p>{summary}</p>
+              {link && (
+                <a className="secondary-action" href={link} target="_blank" rel="noreferrer">
+                  View certificate
+                </a>
+              )}
             </article>
           ))}
         </section>
@@ -177,32 +173,40 @@ function App() {
         <section className="projects-panel card-surface" id="projects">
           <div>
             <p className="eyebrow">Projects</p>
+            <h2>GA projects and other builds</h2>
             <p>
-              My GitHub and portfolio include different kinds of work such as Java games, JSX pages, Django projects, mobile and desktop apps, Unity games, Unreal Engine projects, and other university builds. Examples include the project videos page, the trace app, the tracking game app, and the General Assembly app.
+              A selection of deployed projects with direct links to github code and each live app.
             </p>
-            <div className="project-links">
-              <a className="primary-action" href="https://mygameportfolio.tilda.ws/" target="_blank" rel="noreferrer">
-                Project videos example <ArrowUpRight size={18} />
-              </a>
-              <a className="secondary-action" href="https://github.com/K2222810" target="_blank" rel="noreferrer">
-                GitHub profile
-              </a>
-              <a className="secondary-action" href="https://tracking-game-app-56704e1f5fc3.herokuapp.com/" target="_blank" rel="noreferrer">
-                Trace app example
-              </a>
-              <a className="secondary-action" href="https://general-assembly-app-5d60d220519e.herokuapp.com/" target="_blank" rel="noreferrer">
-                General Assembly app example
-              </a>
-              <a className="secondary-action" href="https://trace-job-app.netlify.app/" target="_blank" rel="noreferrer">
-                Trace job app example
-              </a>
+            <div className="project-cards">
+              {portfolioProjects.map((project) => (
+                <article key={project.name} className="project-card">
+                  <h3>{project.name}</h3>
+                  <p>{project.summary}</p>
+                  <div className="project-links">
+                    <a className="secondary-action" href={project.readme} target="_blank" rel="noreferrer">
+                      github code
+                    </a>
+                    <a className="primary-action" href={project.live} target="_blank" rel="noreferrer">
+                      Live app <ArrowUpRight size={18} />
+                    </a>
+                  </div>
+                </article>
+              ))}
             </div>
+            <a className="secondary-action" href="https://github.com/K2222810" target="_blank" rel="noreferrer">
+              View all repositories on GitHub
+            </a>
+            <a className="secondary-action" href="https://github.com/K2222810/portfolio-" target="_blank" rel="noreferrer">
+              Portfolio code on GitHub
+            </a>
           </div>
-          <div className="project-strip" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
+        </section>
+
+        <section className="card-surface info-card outside-work-card" id="outside-work">
+          <h2>My life outside programming</h2>
+          <p>
+            Outside of programming, I enjoy playing video games, staying active at the gym, and spending time with friends on the weekends. Whether it’s going out for drinks, relaxing together, or playing games competitively and casually, I enjoy speding my time alone mostly but i value social skills to communicate and work well with others.
+          </p>
         </section>
 
         <section className="contact-panel card-surface" id="contact">
