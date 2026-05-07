@@ -1,27 +1,35 @@
-# Portfolio Projects
+# Portfolio
 
-A beginner-friendly collection of portfolio projects showcasing fundamental web development skills and best practices.
+A modern, responsive portfolio showcasing web development projects and skills with smooth animations and interactive elements.
 
 ✨ Technologies
-- Node.js
-- Express
+- React
+- Vite
 - HTML/CSS
 - JavaScript
 
 🚀 Features
-Portfolio project practice:
-- Project showcases (/projects/:id)
-- Project details retrieval (/projects/:id/details)
-- Skills listing (/skills/:category)
+Visual & Interactive Elements:
+- Smooth scroll animations and transitions
+- Responsive navigation bar
+- Hero section with call-to-action
+- Projects showcase with detailed descriptions
+- Skills section with visual categories
+- Contact form or CTA buttons
+- Dark/Light theme toggle
+- Mobile-responsive design
+- Hover effects and interactive elements
 
 🛠️ The Process
-This lab focuses on:
+Thanks to my old experience with the Trace website, this portfolio project wasn't that hard to make. Building this project helped me gain more muscle memory with JSX code and reinforce my React fundamentals.
 
-- Creating an Express server.
-- Defining GET routes.
-- Using route params (req.params).
-- Returning responses with res.send().
-- Organizing portfolio projects.
+Key learnings:
+- Component-based architecture with React.
+- Working with hooks (useState, useEffect).
+- JSX syntax and rendering.
+- Styling components with CSS.
+- Building reusable portfolio components.
+- Creating smooth animations and transitions.
 
 ▶️ Running the Project
 1) Clone the repository
@@ -37,7 +45,7 @@ npm install
 
 3) Start the server
 ```
-npm start
+npm run dev
 ```
 
-Open: http://localhost:3000
+Open: http://localhost:5173
