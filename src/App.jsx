@@ -111,10 +111,6 @@ function App() {
             <div className="visual-frame">
               <div className="visual-glow" />
               <div className="visual-card">
-                <div className="visual-card-top">
-                  <span className="status-dot" />
-                  <span>Profile snapshot</span>
-                </div>
                 <div className="visual-grid">
                   <div>
                     <strong>Location</strong>
