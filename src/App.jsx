@@ -139,11 +139,6 @@ function App() {
             <article key={name} className="card-surface section-card">
               <h2>{name}</h2>
               <p>{summary}</p>
-              {link && (
-                <a className="secondary-action" href={link} target="_blank" rel="noreferrer">
-                  View certificate
-                </a>
-              )}
             </article>
           ))}
         </section>
