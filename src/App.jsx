@@ -37,10 +37,9 @@ const softwareProjects = [
     live: 'https://general-assembly-app-5d60d220519e.herokuapp.com/'
   },
   {
-    name: 'Portfolio ',
-    summary: 'My portfolio was build using reactive native,here is the link for my video .',
-    readme: 'https://github.com/K2222810/portfolio-',
-    video: 'https://mygameportfolio.tilda.ws/'
+    name: 'Snake Game ',
+    summary: 'A JavaScript snake game project focused on classic gameplay, movement controls, and score progression.',
+    live: 'https://snake-game-java.netlify.app/'
   }
 ];
 
