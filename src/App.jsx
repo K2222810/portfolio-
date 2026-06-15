@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 import NavBar from './components/NavBar/NavBar.jsx';
@@ -16,32 +17,110 @@ const educationCertificates = [
   }
 ];
 
-const portfolioProjects = [
+const softwareProjects = [
   {
     name: 'Trace Job App',
-    summary: 'Full-stack job tracking application with modern front-end and deployment workflow.',
+    summary: 'Full-stack job tracking application, with frontend and backend using React Native.',
     readme: 'https://github.com/K2222810/trace-front-end',
     live: 'https://trace-job-app.netlify.app/'
   },
   {
     name: 'Tracking Game App (Django)',
-    summary: 'Django-based tracking project focused on CRUD features and practical deployment.',
+    summary: 'Django-based tracking games progress project, focused on CRUD features and practical deployment.',
     readme: 'https://github.com/K2222810/Tracking-Games-Django',
     live: 'https://tracking-game-app-56704e1f5fc3.herokuapp.com/'
   },
   {
-    name: 'General Assembly App',
-    summary: 'GA project app showcasing full-stack fundamentals and deployment pipeline.',
+    name: 'Pizza App',
+    summary: 'A GA project pizza app showcasing full-stack fundamentals and deployment pipeline .',
     readme: 'https://github.com/K2222810/MEN-Stack-CRUD-App',
     live: 'https://general-assembly-app-5d60d220519e.herokuapp.com/'
   },
   {
-    name: 'Portfolio Videos',
-    summary: 'Project video showcase with gameplay and build examples across multiple projects.',
+    name: 'Portfolio ',
+    summary: 'My portfolio was build using reactive native,here is the link for my video .',
     readme: 'https://github.com/K2222810/portfolio-',
-    live: 'https://mygameportfolio.tilda.ws/'
+    video: 'https://mygameportfolio.tilda.ws/'
   }
 ];
+
+const gameProjects = [
+  {
+    name: 'FireRate',
+    summary: 'A sci-fi Unreal Engine prototype (FPS/third-person style) where the player tries to escape a lab. I did project from learning process from a online course to improve my unreal skills and im still thiking in improving it.',
+    repo: 'https://github.com/K2222810/RateFire_FinalProject',
+    video: 'https://www.youtube.com/watch?v=msiWj2yJwKQ'
+  },
+  {
+    name: 'Shade',
+    summary: 'A mobile Unity puzzle-platformer set in a bleak, colorless world. I built the coin, collision, save and load systems, handled map level design, created the menu, and supported the team with coding tasks.',
+    video: 'https://www.youtube.com/watch?v=3HiHeiucQqQ'
+  },
+  {
+    name: 'BombRush',
+    summary: 'A multiplayer Unity project where two teams compete to score a ball. My role focused on applying the character work and contributing to the team project overall.',
+    video: 'https://www.youtube.com/watch?v=jHBRqZchTLw'
+  },
+  {
+    name: 'F&F',
+    summary: 'My first solo Unity project from second year, built from scratch as a simple FPS game with three levels.',
+    video: 'https://www.youtube.com/watch?v=_ik90bJEYoc'
+  },{
+    name: 'FPS unity game',
+    summary: 'An FPS Unity project used to practice core shooting mechanics, systems, and gameplay fundamentals.',
+    video: 'https://www.youtube.com/watch?v=gQCLTDqEEGA'
+  },
+  {
+    name: 'Bounce Game',
+    summary: 'A group puzzle game developed for PS5 using a dev kit to explore controller features. I implemented platform movement based on the controller’s horizontal angle and helped build the cannon, ball physics, and other features.',
+    video: 'https://www.youtube.com/watch?v=bN5uhvKYoZc'
+  },
+  {
+    name: 'Maze game',
+    summary: 'My first group Unity project and a valuable portfolio piece. I handled the game’s level design, movement, and mapping, and I continue to improve it with new scripts, levels, and assets.',
+    video: 'https://www.youtube.com/watch?v=kTHqkReTDfo&t=99s'
+  },
+  {
+    name: 'Basic IA plataform game',
+    summary: 'A Unity project template from Kingston University where I learned key systems such as pickups, animations, sound, pathways, scoring, AI diagrams, and triggers.',
+    video: 'https://www.youtube.com/watch?v=MqwymnQOOs0&t=8s'
+  },
+  {
+    name: 'Node experimentation',
+    summary: 'An experimental project used to test ideas, systems, and gameplay mechanics during development.',
+    video: 'https://www.youtube.com/watch?v=cdA5H5ISzqA'
+  },
+  {
+    name: 'Dark Mines of london',
+    summary: 'A C++ project where I handled the full gameplay flow, including design, animation, visuals, and code.',
+    video: 'https://www.youtube.com/watch?v=IoFtzFKCHtE&t=28s'
+  }
+];
+
+const createProjectSlides = (projects, slideSize = 2) =>
+  projects.reduce((slides, project, index) => {
+  const slideIndex = Math.floor(index / slideSize);
+
+  if (!slides[slideIndex]) {
+    slides[slideIndex] = [];
+  }
+
+  slides[slideIndex].push(project);
+  return slides;
+}, []);
+
+const getYouTubeVideoId = (url) => {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
+  return match ? match[1] : null;
+};
+
+const getYouTubeEmbedUrl = (url) => {
+  const videoId = getYouTubeVideoId(url);
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+};
+
+const softwareProjectSlides = createProjectSlides(softwareProjects, 2);
+const gameProjectSlides = createProjectSlides(gameProjects, 2);
 
 const skillIcons = [
   { name: 'C++', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
@@ -59,6 +138,31 @@ const skillIcons = [
 ];
 
 function App() {
+  const [activeSoftwareSlide, setActiveSoftwareSlide] = useState(0);
+  const [activeGameSlide, setActiveGameSlide] = useState(0);
+  const [isSoftwareOpen, setIsSoftwareOpen] = useState(true);
+  const [isGameOpen, setIsGameOpen] = useState(true);
+
+  const showPreviousSoftwareSlide = () => {
+    setActiveSoftwareSlide((currentSlide) =>
+      currentSlide === 0 ? softwareProjectSlides.length - 1 : currentSlide - 1
+    );
+  };
+
+  const showNextSoftwareSlide = () => {
+    setActiveSoftwareSlide((currentSlide) => (currentSlide + 1) % softwareProjectSlides.length);
+  };
+
+  const showPreviousGameSlide = () => {
+    setActiveGameSlide((currentSlide) =>
+      currentSlide === 0 ? gameProjectSlides.length - 1 : currentSlide - 1
+    );
+  };
+
+  const showNextGameSlide = () => {
+    setActiveGameSlide((currentSlide) => (currentSlide + 1) % gameProjectSlides.length);
+  };
+
   return (
     <>
       <div className="page-background" aria-hidden="true">
@@ -90,7 +194,7 @@ function App() {
             </p>
 
             <div className="hero-actions">
-              <a className="primary-action" href="#projects">
+              <a className="primary-action" href="#software-projects">
                 View projects <ArrowUpRight size={18} />
               </a>
               <a className="secondary-action" href="#contact">
@@ -164,32 +268,181 @@ function App() {
         <section className="projects-panel card-surface" id="projects">
           <div>
             <p className="eyebrow">Projects</p>
-            <h2>GA projects and other builds</h2>
+            <h2>Project categories</h2>
             <p>
-              A selection of deployed projects with direct links to github code and each live app.
+              My portfolio is split into two independent sections below.
             </p>
-            <div className="project-cards">
-              {portfolioProjects.map((project) => (
-                <article key={project.name} className="project-card">
-                  <h3>{project.name}</h3>
-                  <p>{project.summary}</p>
-                  <div className="project-links">
-                    <a className="secondary-action" href={project.readme} target="_blank" rel="noreferrer">
-                      github code
-                    </a>
-                    <a className="primary-action" href={project.live} target="_blank" rel="noreferrer">
-                      Live app <ArrowUpRight size={18} />
-                    </a>
-                  </div>
-                </article>
-              ))}
+          </div>
+        </section>
+
+        <section className="projects-panel card-surface" id="software-projects">
+          <div>
+            <div className="project-category-header">
+              <h3 className="project-category-title">Software Engineering</h3>
+              <button
+                type="button"
+                className="secondary-action project-collapse-button"
+                onClick={() => setIsSoftwareOpen((current) => !current)}
+                aria-expanded={isSoftwareOpen}
+                aria-controls="software-projects-content"
+              >
+                {isSoftwareOpen ? 'Compress' : 'Open'}
+              </button>
             </div>
-            <a className="secondary-action" href="https://github.com/K2222810" target="_blank" rel="noreferrer">
-              View all repositories on GitHub
-            </a>
-            <a className="secondary-action" href="https://github.com/K2222810/portfolio-" target="_blank" rel="noreferrer">
-              Portfolio code on GitHub
-            </a>
+            <div
+              id="software-projects-content"
+              className={`project-content-wrap ${isSoftwareOpen ? 'is-open' : 'is-closed'}`}
+              aria-hidden={!isSoftwareOpen}
+            >
+              <div className="project-content-inner">
+                <div className="project-carousel" aria-live="polite">
+                  <div
+                    className="project-track"
+                    style={{ transform: `translateX(-${activeSoftwareSlide * 100}%)` }}
+                  >
+                    {softwareProjectSlides.map((slide, index) => (
+                      <div className="project-slide" key={`software-slide-${index}`}>
+                        <div className="project-cards">
+                          {slide.map((project) => (
+                            <article key={project.name} className="project-card">
+                              <h3>{project.name}</h3>
+                              <p>{project.summary}</p>
+                              <div className="project-links">
+                                <a className="secondary-action" href={project.readme} target="_blank" rel="noreferrer">
+                                  github code
+                                </a>
+                                {project.live && (
+                                  <a className="primary-action" href={project.live} target="_blank" rel="noreferrer">
+                                    Live app <ArrowUpRight size={18} />
+                                  </a>
+                                )}
+                                {project.video && (
+                                  <a className="primary-action" href={project.video} target="_blank" rel="noreferrer">
+                                    Watch video <ArrowUpRight size={18} />
+                                  </a>
+                                )}
+                              </div>
+                            </article>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="project-controls">
+                  <button
+                    type="button"
+                    className="secondary-action project-nav-button"
+                    onClick={showPreviousSoftwareSlide}
+                    aria-label="Show previous software projects"
+                  >
+                    &lt;
+                  </button>
+                  <button
+                    type="button"
+                    className="secondary-action project-nav-button"
+                    onClick={showNextSoftwareSlide}
+                    aria-label="Show next software projects"
+                  >
+                    &gt;
+                  </button>
+                  <span className="project-indicator">
+                    {activeSoftwareSlide + 1} / {softwareProjectSlides.length}
+                  </span>
+                </div>
+                <a className="secondary-action" href="https://github.com/K2222810" target="_blank" rel="noreferrer">
+                  View all repositories on GitHub
+                </a>
+                <a className="secondary-action" href="https://mygameportfolio.tilda.ws/" target="_blank" rel="noreferrer">
+                  Portfolio video
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="projects-panel card-surface" id="game-projects">
+          <div>
+            <div className="project-category-header">
+              <h3 className="project-category-title">Game Projects</h3>
+              <button
+                type="button"
+                className="secondary-action project-collapse-button"
+                onClick={() => setIsGameOpen((current) => !current)}
+                aria-expanded={isGameOpen}
+                aria-controls="game-projects-content"
+              >
+                {isGameOpen ? 'Compress' : 'Open'}
+              </button>
+            </div>
+            <div
+              id="game-projects-content"
+              className={`project-content-wrap ${isGameOpen ? 'is-open' : 'is-closed'}`}
+              aria-hidden={!isGameOpen}
+            >
+              <div className="project-content-inner">
+                <div className="project-carousel" aria-live="polite">
+                  <div className="project-track" style={{ transform: `translateX(-${activeGameSlide * 100}%)` }}>
+                    {gameProjectSlides.map((slide, index) => (
+                      <div className="project-slide" key={`game-slide-${index}`}>
+                        <div className="project-cards">
+                          {slide.map((project) => {
+                            const embedUrl = getYouTubeEmbedUrl(project.video);
+
+                            return (
+                              <article key={project.name} className="project-card">
+                                <h3>{project.name}</h3>
+                                {embedUrl && (
+                                  <div className="project-video-embed">
+                                    <iframe
+                                      src={embedUrl}
+                                      title={`${project.name} video`}
+                                      loading="lazy"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      referrerPolicy="strict-origin-when-cross-origin"
+                                      allowFullScreen
+                                    />
+                                  </div>
+                                )}
+                                <p>{project.summary}</p>
+                                <div className="project-links">
+                                  {project.repo && (
+                                    <a className="secondary-action" href={project.repo} target="_blank" rel="noreferrer">
+                                      github code
+                                    </a>
+                                  )}
+                                </div>
+                              </article>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="project-controls">
+                  <button
+                    type="button"
+                    className="secondary-action project-nav-button"
+                    onClick={showPreviousGameSlide}
+                    aria-label="Show previous game projects"
+                  >
+                    &lt;
+                  </button>
+                  <button
+                    type="button"
+                    className="secondary-action project-nav-button"
+                    onClick={showNextGameSlide}
+                    aria-label="Show next game projects"
+                  >
+                    &gt;
+                  </button>
+                  <span className="project-indicator">
+                    {activeGameSlide + 1} / {gameProjectSlides.length}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

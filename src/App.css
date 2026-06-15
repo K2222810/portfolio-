@@ -329,12 +329,116 @@
   padding: 24px;
 }
 
+.project-category {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(42, 131, 181, 0.18);
+  background: rgba(238, 251, 255, 0.5);
+}
+
+.project-category + .project-category {
+  margin-top: 16px;
+}
+
+.project-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.project-category-title {
+  margin: 8px 0;
+  color: var(--deep-tide);
+  font-size: 1.18rem;
+}
+
+.project-collapse-button {
+  cursor: pointer;
+  min-width: 108px;
+  justify-content: center;
+}
+
+.project-content-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 360ms ease,
+    opacity 260ms ease;
+}
+
+.project-content-wrap.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+.project-content-wrap.is-closed {
+  margin-top: 0;
+}
+
+.project-content-inner {
+  min-height: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  transition: transform 360ms ease;
+}
+
+.project-content-wrap.is-open .project-content-inner {
+  transform: translateY(0);
+}
+
+.project-content-wrap.is-closed .project-content-inner {
+  pointer-events: none;
+}
+
 .project-cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin: 14px 0 18px;
+}
+
+.project-carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-track {
+  display: flex;
+  width: 100%;
+  transition: transform 420ms ease;
+}
+
+.project-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.project-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0 18px;
+}
+
+.project-nav-button {
+  cursor: pointer;
+  min-width: 56px;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 12px 0;
+}
+
+.project-indicator {
+  color: rgba(18, 18, 58, 0.74);
+  font-size: 0.88rem;
+  font-weight: 700;
 }
 
 .project-card {
@@ -351,6 +455,20 @@
 
 .project-card p {
   margin: 0 0 12px;
+}
+
+.project-video-embed {
+  margin: 0 0 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(42, 131, 181, 0.24);
+}
+
+.project-video-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
 .skill-tags {
@@ -418,6 +536,14 @@
 
   .project-cards {
     grid-template-columns: 1fr;
+  }
+
+  .project-controls {
+    flex-wrap: wrap;
+  }
+
+  .project-category-header {
+    flex-wrap: wrap;
   }
 
   .highlights,
