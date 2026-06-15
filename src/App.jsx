@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 import NavBar from './components/NavBar/NavBar.jsx';
@@ -143,6 +143,26 @@ function App() {
   const [isSoftwareOpen, setIsSoftwareOpen] = useState(true);
   const [isGameOpen, setIsGameOpen] = useState(true);
 
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    animatedElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
   const showPreviousSoftwareSlide = () => {
     setActiveSoftwareSlide((currentSlide) =>
       currentSlide === 0 ? softwareProjectSlides.length - 1 : currentSlide - 1
@@ -185,7 +205,7 @@ function App() {
       <NavBar />
 
       <main className="portfolio-shell">
-        <header className="hero card-surface" id="about">
+        <header className="hero card-surface reveal-on-scroll" id="about">
           <div className="hero-copy">
             <p className="eyebrow">Alejandro Bayne</p>
             <h1>Software & Games Programmer</h1>
@@ -240,14 +260,14 @@ function App() {
 
         <section className="sections-grid" id="education">
           {educationCertificates.map(({ name, summary, link }) => (
-            <article key={name} className="card-surface section-card">
+            <article key={name} className="card-surface section-card reveal-on-scroll">
               <h2>{name}</h2>
               <p>{summary}</p>
             </article>
           ))}
         </section>
 
-        <section className="skills-panel card-surface" id="skills">
+        <section className="skills-panel card-surface reveal-on-scroll" id="skills">
           <div>
             <p className="eyebrow">Skills</p>
             <h2>Technical profile and current growth areas.</h2>
@@ -265,7 +285,7 @@ function App() {
           </div>
         </section>
 
-        <section className="projects-panel card-surface" id="projects">
+        <section className="projects-panel card-surface reveal-on-scroll" id="projects">
           <div>
             <p className="eyebrow">Projects</p>
             <h2>Project categories</h2>
@@ -275,7 +295,7 @@ function App() {
           </div>
         </section>
 
-        <section className="projects-panel card-surface" id="software-projects">
+        <section className="projects-panel card-surface reveal-on-scroll" id="software-projects">
           <div>
             <div className="project-category-header">
               <h3 className="project-category-title">Software Engineering</h3>
@@ -304,13 +324,10 @@ function App() {
                       <div className="project-slide" key={`software-slide-${index}`}>
                         <div className="project-cards">
                           {slide.map((project) => (
-                            <article key={project.name} className="project-card">
+                            <article key={project.name} className="project-card reveal-on-scroll">
                               <h3>{project.name}</h3>
                               <p>{project.summary}</p>
                               <div className="project-links">
-                                <a className="secondary-action" href={project.readme} target="_blank" rel="noreferrer">
-                                  github code
-                                </a>
                                 {project.live && (
                                   <a className="primary-action" href={project.live} target="_blank" rel="noreferrer">
                                     Live app <ArrowUpRight size={18} />
@@ -350,18 +367,13 @@ function App() {
                     {activeSoftwareSlide + 1} / {softwareProjectSlides.length}
                   </span>
                 </div>
-                <a className="secondary-action" href="https://github.com/K2222810" target="_blank" rel="noreferrer">
-                  View all repositories on GitHub
-                </a>
-                <a className="secondary-action" href="https://mygameportfolio.tilda.ws/" target="_blank" rel="noreferrer">
-                  Portfolio video
-                </a>
+                
               </div>
             </div>
           </div>
         </section>
 
-        <section className="projects-panel card-surface" id="game-projects">
+        <section className="projects-panel card-surface reveal-on-scroll" id="game-projects">
           <div>
             <div className="project-category-header">
               <h3 className="project-category-title">Game Projects</h3>
@@ -390,7 +402,7 @@ function App() {
                             const embedUrl = getYouTubeEmbedUrl(project.video);
 
                             return (
-                              <article key={project.name} className="project-card">
+                              <article key={project.name} className="project-card reveal-on-scroll">
                                 <h3>{project.name}</h3>
                                 {embedUrl && (
                                   <div className="project-video-embed">
@@ -405,13 +417,6 @@ function App() {
                                   </div>
                                 )}
                                 <p>{project.summary}</p>
-                                <div className="project-links">
-                                  {project.repo && (
-                                    <a className="secondary-action" href={project.repo} target="_blank" rel="noreferrer">
-                                      github code
-                                    </a>
-                                  )}
-                                </div>
                               </article>
                             );
                           })}
@@ -446,20 +451,22 @@ function App() {
           </div>
         </section>
 
-        <section className="card-surface info-card outside-work-card" id="outside-work">
+        <section className="card-surface info-card outside-work-card reveal-on-scroll" id="outside-work">
           <h2>My life outside programming</h2>
           <p>
             Outside of programming, I enjoy playing video games, staying active at the gym, and spending time with friends on the weekends. Whether it’s going out for drinks, relaxing together, or playing games competitively and casually, I enjoy speding my time alone mostly but i value social skills to communicate and work well with others.
           </p>
         </section>
 
-        <section className="contact-panel card-surface" id="contact">
+        <section className="contact-panel card-surface reveal-on-scroll" id="contact">
           <div>
             <p className="eyebrow">Contact</p>
             <h2>Contact me if you are interested in my work and progress.</h2>
             <p>
               Phone: +44 7412 750723<br />
-              Email: Alexbaynespineda12@gmail.com
+              Email: Alexbaynespineda12@gmail.com<br />
+              GitHub: <a href="https://github.com/K2222810" target="_blank" rel="noreferrer">https://github.com/K2222810</a><br />
+              LinkedIn: <a href="https://www.linkedin.com/in/alejandro-bayne-10b890372/" target="_blank" rel="noreferrer">https://www.linkedin.com/in/alejandro-bayne-10b890372/</a>
             </p>
           </div>
           <a className="primary-action" href="mailto:Alexbaynespineda12@gmail.com">
